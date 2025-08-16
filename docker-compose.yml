@@ -1,0 +1,47 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8080:8080"   # Jenkins UI
+      - "50000:50000" # Jenkins agent port
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    restart: unless-stopped
+
+  selenium-hub:
+    image: selenium/hub:4.21.0
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"   # Selenium Grid UI
+    environment:
+      - SE_OPTS=--session-request-timeout 600
+    restart: unless-stopped
+
+  chrome:
+    image: selenium/node-chrome:4.21.0
+    container_name: chrome-node
+    depends_on:
+      - selenium-hub
+    shm_size: "2gb"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    restart: unless-stopped
+
+  firefox:
+    image: selenium/node-firefox:4.21.0
+    container_name: firefox-node
+    depends_on:
+      - selenium-hub
+    shm_size: "2gb"
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:

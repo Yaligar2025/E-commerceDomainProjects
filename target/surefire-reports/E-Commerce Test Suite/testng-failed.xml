@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [E-Commerce Test Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="extentreportlistener.ExtentTestListener"/>
+  </listeners>
+  <test thread-count="5" name="Chrome Tests(failed)" verbose="0">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.Ecommerce.tests.LoginTest">
+        <methods>
+          <include name="loginTestCases" invocation-numbers="0"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.Ecommerce.tests.LoginTest -->
+      <class name="com.Ecommerce.tests.CheckOutTest">
+        <methods>
+          <include name="checkoutWithoutItemsNegativeTest"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="initPagesAndLogin"/>
+          <include name="placeOrderWithValidDetails"/>
+        </methods>
+      </class> <!-- com.Ecommerce.tests.CheckOutTest -->
+      <class name="com.Ecommerce.tests.AddToCartTest">
+        <methods>
+          <include name="initPagesAndLogin"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="removeItemFromCartTest"/>
+          <include name="addMultipleItemsToCartTest"/>
+          <include name="addSingleItemToCartTest"/>
+        </methods>
+      </class> <!-- com.Ecommerce.tests.AddToCartTest -->
+    </classes>
+  </test> <!-- Chrome Tests(failed) -->
+  <test thread-count="5" name="Firefox Tests(failed)" verbose="0">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.Ecommerce.tests.LoginTest">
+        <methods>
+          <include name="loginTestCases" invocation-numbers="0 1 2"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.Ecommerce.tests.LoginTest -->
+      <class name="com.Ecommerce.tests.CheckOutTest">
+        <methods>
+          <include name="checkoutWithoutItemsNegativeTest"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="initPagesAndLogin"/>
+          <include name="placeOrderWithValidDetails"/>
+        </methods>
+      </class> <!-- com.Ecommerce.tests.CheckOutTest -->
+      <class name="com.Ecommerce.tests.AddToCartTest">
+        <methods>
+          <include name="initPagesAndLogin"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="removeItemFromCartTest"/>
+          <include name="addMultipleItemsToCartTest"/>
+          <include name="addSingleItemToCartTest"/>
+        </methods>
+      </class> <!-- com.Ecommerce.tests.AddToCartTest -->
+    </classes>
+  </test> <!-- Firefox Tests(failed) -->
+</suite> <!-- Failed suite [E-Commerce Test Suite] -->
